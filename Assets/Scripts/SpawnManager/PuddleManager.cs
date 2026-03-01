@@ -23,8 +23,8 @@ public class PuddleManager : MonoBehaviour
     void Start()
     {
         topRight=Camera.main.ScreenToWorldPoint(new Vector3(Screen.width,Screen.height,0));
-        leftBottom=Camera.main.ScreenToWorldPoint(new Vector3(0,0,0));//µÃµ½Á½¸öÖ÷×ø±ê
-        yAbove=yAboveMedium+topRight.y;//µÃµ½Éú³ÉyµÄ×ø±êÎ»ÖÃ
+        leftBottom=Camera.main.ScreenToWorldPoint(new Vector3(0,0,0));//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        yAbove=yAboveMedium+topRight.y;
     }
 
     // Update is called once per frame
@@ -32,9 +32,9 @@ public class PuddleManager : MonoBehaviour
     {
         timer+=Time.deltaTime;
         if(timer>=spawnTime){
-        randomX=Random.Range(leftBottom.x,topRight.x);//Ëæ»úÉú³ÉÒ»¸öx
-        spawnPosition=new Vector2(randomX,yAbove);//Ëæ»úÉú³É×ø±êÎ»ÖÃ
-        Instantiate(puddle,spawnPosition,Quaternion.identity);//Ëæ»úÉú³É¡£
+        randomX=Random.Range(leftBottom.x,topRight.x);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½x
+        spawnPosition=new Vector2(randomX,yAbove);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
+        Instantiate(puddle,spawnPosition,Quaternion.identity);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¡ï¿½
         timer=0;
         }
     }

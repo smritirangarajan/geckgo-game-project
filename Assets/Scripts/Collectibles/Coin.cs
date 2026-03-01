@@ -1,11 +1,16 @@
 using UnityEngine;
 
-
 public class Coin : MonoBehaviour
 {
+    [Header("Despawn")]
     [SerializeField] private float despawnDistance = 10f;
 
+    [Header("Animation")]
+    [SerializeField] private float pulseSpeed = 4f;
+    [SerializeField] private float pulseAmount = 0.15f;
+
     private Transform player;
+    private Vector3 originalScale;
 
     private void Start()
     {
@@ -14,9 +19,23 @@ public class Coin : MonoBehaviour
         {
             player = gecko.transform;
         }
+
+        originalScale = transform.localScale;
     }
 
     private void Update()
+    {
+        AnimatePulse();
+        CheckDespawn();
+    }
+
+    private void AnimatePulse()
+    {
+        float scale = 1f + Mathf.Sin(Time.time * pulseSpeed) * pulseAmount;
+        transform.localScale = originalScale * scale;
+    }
+
+    private void CheckDespawn()
     {
         if (player == null) return;
 

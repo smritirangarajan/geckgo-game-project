@@ -1,41 +1,63 @@
-//using System.Numerics;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class SnakeManager : MonoBehaviour
 {
-    public GameObject snake;//把蛇到时候拉上去
-    UnityEngine.Vector3 topRight;//用来到时候生成随机坐标
-    UnityEngine.Vector3 leftBottom;
+    [SerializeField] private GameObject snake;
+    [SerializeField] private float spawnInterval = 3f;
+    [SerializeField] private float spawnMargin = 2f;
 
-    float randomX;//用来存取随机数。
+    private float timer;
+    private bool spawnFromLeftNext = true;
+    private Vector3 screenLeft;
+    private Vector3 screenRight;
+    private float screenTop;
+    private float screenBottom;
 
-    float yAboveMedium=3;//表示超出顶部的距离
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    float yAbove;
-
-    #region timer
-    float spawnTime=3f;
-    float timer=0;
-    #endregion
-
-    UnityEngine.Vector2 spawnPosition;//用来存储最终的生成位置
-    void Start()
+    private void Start()
     {
-        topRight=Camera.main.ScreenToWorldPoint(new Vector3(Screen.width,Screen.height,0));
-        leftBottom=Camera.main.ScreenToWorldPoint(new Vector3(0,0,0));//得到两个主坐标
-        yAbove=yAboveMedium+topRight.y;//得到生成y的坐标位置
+        UpdateScreenBounds();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void UpdateScreenBounds()
     {
-        timer+=Time.deltaTime;
-        if(timer>=spawnTime){
-        randomX=Random.Range(leftBottom.x,topRight.x);//随机生成一个x
-        spawnPosition=new Vector2(randomX,yAbove);//随机生成坐标位置
-        Instantiate(snake,spawnPosition,Quaternion.identity);//随机生成。
-        timer=0;
+        if (Camera.main == null) return;
+
+        screenLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
+        screenRight = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0));
+        screenTop = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height, 0)).y;
+        screenBottom = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).y;
+    }
+
+    private void Update()
+    {
+        if (snake == null) return;
+
+        timer += Time.deltaTime;
+        if (timer >= spawnInterval)
+        {
+            SpawnSnake();
+            timer = 0f;
+        }
+    }
+
+    private void SpawnSnake()
+    {
+        UpdateScreenBounds();
+
+        bool moveRight = spawnFromLeftNext;
+        spawnFromLeftNext = !spawnFromLeftNext;
+
+        float spawnX = moveRight ? screenLeft.x - spawnMargin : screenRight.x + spawnMargin;
+        float spawnY = Random.Range(screenTop - 3f, screenTop + 1f);
+
+        Vector3 spawnPosition = new Vector3(spawnX, spawnY, 0f);
+
+        GameObject spawned = Instantiate(snake, spawnPosition, Quaternion.identity);
+
+        Snake snakeScript = spawned.GetComponent<Snake>();
+        if (snakeScript != null)
+        {
+            snakeScript.Initialize(moveRight);
         }
     }
 }

@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 240106420653592364}
   - component: {fileID: 9194143818793341562}
   - component: {fileID: 487964880571909858}
-  - component: {fileID: 1270635000190382233}
-  - component: {fileID: -2904519338086191658}
+  - component: {fileID: -6823555492500566134}
   m_Layer: 0
   m_Name: Puddle
   m_TagString: Untagged
@@ -78,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -5
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 0.7566741, b: 0.8018868, a: 1}
   m_FlipX: 0
@@ -120,7 +119,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -136,7 +135,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1270635000190382233
+--- !u!114 &-6823555492500566134
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,30 +147,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c5ee27ed43824895a6b2d392846f02e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!50 &-2904519338086191658
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3388089770180874551}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  puddleSprites:
+  - {fileID: 21300000, guid: 862d7a9d1373f4a4aa46940f6f8958d5, type: 3}
+  - {fileID: 21300000, guid: 8799e148380974162808f86d931e83de, type: 3}
+  - {fileID: 21300000, guid: 3ccf17d1e7dc048da873e5a03f5901bf, type: 3}
+  - {fileID: 21300000, guid: 733bc724cedc24c83995df07a31dcc4f, type: 3}
+  - {fileID: 21300000, guid: ef05555a8335349cbbc5d8fe9bb526aa, type: 3}
+  despawnDistance: 12
